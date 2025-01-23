@@ -3,7 +3,6 @@ import { StatusCodes } from 'http-status-codes'
 import { LoanDto } from './DTO/LoanDto'
 //#1
 test('Negative decision to receive loan should receive code 200', async ({ request }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
@@ -14,7 +13,6 @@ test('Negative decision to receive loan should receive code 200', async ({ reque
   console.log('response status:', response.status())
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskLevel).toBe('Very High Risk')
   expect.soft(responseBody.riskScore).toBeDefined()
@@ -26,7 +24,6 @@ test('Negative decision to receive loan should receive code 200', async ({ reque
 test('Successful decision of loan with correct data and Medium Risk should receive code 200', async ({
   request,
 }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
@@ -38,7 +35,6 @@ test('Successful decision of loan with correct data and Medium Risk should recei
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
   console.log('Risk level for your loan defined as:', responseBody.riskLevel)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskPeriods).toStrictEqual([6, 9, 12]) //.toBeDefined()
   expect.soft(responseBody.riskLevel).toBe('Medium Risk')
@@ -49,8 +45,7 @@ test('Successful decision of loan with correct data and Medium Risk should recei
 test('Successful decision of loan with correct data and Low Risk should receive code 200', async ({
   request,
 }) => {
-  // Send a POST request to the server
-  const response = await request.post(
+ const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
       data: LoanDto.generatePositiveDecisionLowRiskLoanDto(),
@@ -61,7 +56,6 @@ test('Successful decision of loan with correct data and Low Risk should receive 
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
   console.log('Risk level for your loan defined as:', responseBody.riskLevel)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskPeriods).toStrictEqual([12, 18, 24, 30, 36]) //.toBeDefined()
   expect.soft(responseBody.riskLevel).toBe('Low Risk')
@@ -72,7 +66,6 @@ test('Successful decision of loan with correct data and Low Risk should receive 
 test('Positive decision of loan with correct data and High Risk should receive code 200', async ({
   request,
 }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
@@ -84,7 +77,6 @@ test('Positive decision of loan with correct data and High Risk should receive c
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
   console.log('Risk level for your loan defined as:', responseBody.riskLevel)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskPeriods).toStrictEqual([3, 6]) //.toBeDefined()
   expect.soft(responseBody.riskLevel).toBe('High Risk')
@@ -95,7 +87,6 @@ test('Positive decision of loan with correct data and High Risk should receive c
 test('Negative decision of loan with correct data and Very High Risk should receive code 200', async ({
   request,
 }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
@@ -107,7 +98,6 @@ test('Negative decision of loan with correct data and Very High Risk should rece
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
   console.log('Risk level for your loan defined as:', responseBody.riskLevel)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskPeriods).toStrictEqual([])
   expect.soft(responseBody.riskLevel).toBe('Very High Risk')
@@ -118,7 +108,6 @@ test('Negative decision of loan with correct data and Very High Risk should rece
 test('Negative decision of loan for young customer and Very High Risk should receive code 200', async ({
   request,
 }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {
@@ -130,7 +119,6 @@ test('Negative decision of loan for young customer and Very High Risk should rec
   console.log('response body:', responseBody)
   console.log('Decision to loan:', responseBody.riskDecision)
   console.log('Risk level for your loan defined as:', responseBody.riskLevel)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.OK)
   expect.soft(responseBody.riskPeriods).toStrictEqual([])
   expect.soft(responseBody.riskLevel).toBe('Very High Risk')
@@ -139,7 +127,6 @@ test('Negative decision of loan for young customer and Very High Risk should rec
 })
 //#7
 test('Empty loan dto should receive code 400', async ({ request }) => {
-  // Send a POST request to the server
   const response = await request.post(
     `https://backend.tallinn-learning.ee/api/loan-calc/decision`,
     {

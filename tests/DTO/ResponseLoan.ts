@@ -1,9 +1,9 @@
 export class ResponseLoan {
-  riskScore: number
-  riskLevel: string
-  riskPeriods: number
-  applicationId: string
-  riskDecision: string
+  riskScore: number;
+  riskLevel: string;
+  riskPeriods: number;
+  applicationId: string;
+  riskDecision: string;
 
   constructor(
     riskScore: number,

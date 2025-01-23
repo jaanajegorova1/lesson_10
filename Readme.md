@@ -1,7 +1,7 @@
 ## Post Loan DTO Tests
 
-| #   | Test name                                                       | Should receive code | Received code | Status |
-| --- | --------------------------------------------------------------- | ------------------- | ------------- | ------ |
+| #   | DTO Load test names                                             | Should receive code | Received code | Status |
+| --- |-----------------------------------------------------------------| ------------------- | ------------- | ------ |
 | 1   | Negative decision to receive loan                               | 200                 | 200           | Passed |
 | 2   | Successful decision of loan with correct data and Medium Risk   | 200                 | 200           | Passed |
 | 3   | Successful decision of loan with correct data and Low Risk      | 200                 | 200           | Passed |
