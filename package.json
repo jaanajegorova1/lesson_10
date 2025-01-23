@@ -11,8 +11,8 @@
     "test": "tests"
   },
   "scripts": {
-    "prettier:format": "prettier --write \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "prettier:check": "prettier --check \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "prettier:format": "prettier . --write \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "prettier:check": "prettier . --check \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "lint": "eslint tests",
     "test": "npx jest"
   },

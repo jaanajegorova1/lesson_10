@@ -1,12 +1,12 @@
 import { ResponseLoan } from './ResponseLoan'
 
 export class LoanDto {
-  income: number;
-  debt: number;
-  age: number;
-  employed: boolean;
-  loanAmount: number;
-  loanPeriod: number;
+  income: number
+  debt: number
+  age: number
+  employed: boolean
+  loanAmount: number
+  loanPeriod: number
 
   constructor(
     income: number,
