@@ -1,13 +1,37 @@
 {
-  "name": "lesson_10",
+  "name": "intro-to-api-testing",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "| #   | Test name                                                 | Should receive code | Received code | Status |\r | --- |-----------------------------------------------------------| ------------------- | ------------- | ------ |\r | 1   | Get test orders with correct data                         | 200                 | 200           | Passed |\r | 2   | Get test orders with correct similar data                 | 200                 | 200           | Passed |\r | 3   | Get test orders with username and password equals 0       | 400                 | 200           | Failed |\r | 4   | Get test orders with data contains specific symbols       | 400                 | 200           | Failed |\r | 5   | Get test orders with password in float type               | 400                 | 200           | Failed |\r | 6   | Get test orders with string username and numbers password | 200                 | 200           | Passed |\r | 7   | Get test orders without required parameter password       | 500                 | 500           | Passed |\r | 8   | Get test orders without required parameter username       | 500                 | 500           | Passed |\r | 9   | Get test orders with password = &                         | 500                 | 200           | Failed |\r | 10  | Get test orders when parameters = numbers                 | 500                 | 200           | Failed |\r | 11  | Get test orders with parameters = string                  | 500                 | 200           | Failed |\r | 12  | Get test orders when username and password are missing    | 500                 | 500           | Passed |",
   "keywords": [],
-  "author": "",
   "license": "ISC",
+  "author": "",
   "type": "commonjs",
-  "description": ""
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "prettier:format": "prettier --write \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "prettier:check": "prettier --check \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "lint": "eslint tests",
+    "test": "npx jest"
+  },
+  "dependencies": {
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@playwright/test": "^1.48.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.7.5",
+    "eslint": "^9.12.0",
+    "globals": "^15.11.0",
+    "http-status-codes": "^2.3.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.8.1"
+  }
 }
