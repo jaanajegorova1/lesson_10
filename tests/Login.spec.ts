@@ -10,5 +10,26 @@ test.describe('Login tests', async () => {
 
     console.log(await response.text())
     expect(response.status()).toBe(StatusCodes.OK)
+    expect(
+      /^eyJhb[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/.test(await response.text()),
+    ).toBeTruthy()
+  })
+
+  test('Unsuccessful authorization, not allowed method PUT', async ({ request }) => {
+    const response = await request.put('https://backend.tallinn-learning.ee/login/student', {
+      data: LoginDTO.createLoginWithCorrectData(),
+    })
+
+    console.log(await response.text())
+    expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
+  })
+
+  test('Unsuccessful authorization, not allowed method DELETE', async ({ request }) => {
+    const response = await request.delete('https://backend.tallinn-learning.ee/login/student', {
+      data: LoginDTO.createLoginWithCorrectData(),
+    })
+
+    console.log(await response.text())
+    expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
   })
 })
