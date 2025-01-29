@@ -45,7 +45,7 @@ export class OrderDto {
   }
 
   static generateEmptyOrderDto(): any {
-    //Object
+    //Object or any
     // vmesto Object mozhet byt' any, hotja eto i ne horosho tak propisyvat
     return {}
   }

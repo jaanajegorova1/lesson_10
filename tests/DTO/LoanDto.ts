@@ -49,7 +49,7 @@ export class LoanDto {
   }
 
   static generateEmptyLoanDto(): any {
-    //Object
+    //Object or any
     return {}
   }
 
