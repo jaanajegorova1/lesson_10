@@ -1,8 +1,8 @@
-name: Login tests DTO
+name: Login tests
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [master, develop]
   pull_request:
     branches:
       - master
