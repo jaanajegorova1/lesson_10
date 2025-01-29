@@ -48,7 +48,8 @@ export class LoanDto {
     return new LoanDto(100, 100, 13, false, 1000, 36)
   }
 
-  static generateEmptyLoanDto(): any { //Object
+  static generateEmptyLoanDto(): any {
+    //Object
     return {}
   }
 

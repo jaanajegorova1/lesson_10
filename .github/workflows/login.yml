@@ -1,8 +1,8 @@
-name: TEST
+name: Login tests DTO
 
 on:
   push:
-    branches: [master, develop]
+    branches: [main, master, develop]
   pull_request:
     branches:
       - master
@@ -36,6 +36,9 @@ jobs:
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
       - name: Run Playwright API tests
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           echo "Running Playwright to execute API tests..."
           npx playwright test tests/Login.spec.ts
