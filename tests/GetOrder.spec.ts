@@ -6,14 +6,14 @@ test('get order with correct id should receive code 200', async ({ request }) =>
   // Build and send a GET request to the server
   const response = await request.get('https://backend.tallinn-learning.ee/test-orders/1')
   // Log the response status, body and headers
-  const responseBody = OrderDto.serializeResponse(await response.json()) //1. stroku dobavili, vyzvat json(), skobki objazatelno!!! inache znachenije budet undefined
+  const responseBody = OrderDto.serializeResponse(await response.json())
   console.log('response body:', responseBody)
   //console.log('response body:', await response.json())
   console.log('response headers:', response.headers())
   // Check if the response status is 200
   expect.soft(response.status()).toBe(200)
-  expect.soft(responseBody.courierId).not.toBeNull() //3.stroku dobavili
-  expect.soft(responseBody.status).toBe('OPEN') //2. stroku dobavili
+  expect.soft(responseBody.courierId).toBeNull()
+  expect.soft(responseBody.status).toBe('OPEN')
 })
 
 test('get order with id = 0', async ({ request }) => {
