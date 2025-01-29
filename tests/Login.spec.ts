@@ -1,6 +1,6 @@
-import {expect, test} from '@playwright/test'
-import {LoginDTO} from "./DTO/LoginDTO"
-import {StatusCodes} from "http-status-codes"
+import { expect, test } from '@playwright/test'
+import { LoginDTO } from './DTO/LoginDTO'
+import { StatusCodes } from 'http-status-codes'
 
 test.describe('Login tests', async () => {
   test('Successful authorization', async ({ request }) => {
