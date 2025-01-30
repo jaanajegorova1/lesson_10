@@ -15,7 +15,7 @@ test.describe('Login tests', async () => {
     ).toBeTruthy()
   })
 
-  test('Unsuccessful authorization, not allowed method PUT', async ({ request }) => {
+  test('Unsuccessful authorization using not allowed method PUT', async ({ request }) => {
     const response = await request.put('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDTO.createLoginWithCorrectData(),
     })
@@ -24,12 +24,21 @@ test.describe('Login tests', async () => {
     expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
   })
 
-  test('Unsuccessful authorization, not allowed method DELETE', async ({ request }) => {
+  test('Unsuccessful authorization using not allowed method DELETE', async ({ request }) => {
     const response = await request.delete('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDTO.createLoginWithCorrectData(),
     })
 
     console.log(await response.text())
     expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
+  })
+
+  test('Unsuccessful authorization with incorrect credentials', async ({ request }) => {
+    const response = await request.post('https://backend.tallinn-learning.ee/login/student', {
+      data: LoginDTO.createLoginWithIncorrectData(),
+    })
+
+    console.log(await response.text())
+    expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
   })
 })
