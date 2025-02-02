@@ -21,7 +21,7 @@ test('123 post order with correct data should receive code 201', async ({ reques
 test('post order with data without status field should receive code 200', async ({ request }) => {
   // Send a POST request to the server
   const response = await request.post('https://backend.tallinn-learning.ee/test-orders', {
-    data: OrderDto.generateOrderDtoWithoutStatus(), //vnesli novuju funkciju bez polja status
+    data: OrderDto.generateOrderDtoWithoutStatus(),
   })
   const responseBody = await response.json()
 
