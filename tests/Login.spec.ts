@@ -66,9 +66,40 @@ test.describe('Login tests', async () => {
     expect(requestedOrder.status).toBe('OPEN')
   })
 
-  test.skip('TL-12-4 Unsuccessful authorization using not allowed method PUT', async ({
+  test('TL-12-7 Successful authorization, order creation, order status  and order deletion', async ({
     request,
   }) => {
+    const responseLogin = await request.post('https://backend.tallinn-learning.ee/login/student', {
+      data: LoginDTO.createLoginWithCorrectData(),
+    })
+    const responseCreateOrder = await request.post('https://backend.tallinn-learning.ee/orders', {
+      data: OrderDto.generateRandomOrderDto(), // data; {};
+      headers: {
+        Authorization: 'Bearer ' + (await responseLogin.text()),
+      },
+    })
+    const createdOrder = OrderDto.serializeResponse(await responseCreateOrder.json())
+    const responseOrderStatus = await request.get(
+      `https://backend.tallinn-learning.ee/orders/${createdOrder.id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + (await responseLogin.text()),
+        },
+      },
+    )
+    const requestedOrder = OrderDto.serializeResponse(await responseOrderStatus.json())
+    const responseDeleteOrder = await request.delete(
+      `https://backend.tallinn-learning.ee/orders/${createdOrder.id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + (await responseLogin.text()),
+        },
+      },
+    )
+    expect(responseDeleteOrder.status()).toBe(StatusCodes.OK)
+  })
+
+  test('TL-12-4 Unsuccessful authorization using not allowed method PUT', async ({ request }) => {
     const response = await request.put('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDTO.createLoginWithCorrectData(),
     })
@@ -77,7 +108,7 @@ test.describe('Login tests', async () => {
     expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
   })
 
-  test.skip('TL-12-5 Unsuccessful authorization using not allowed method DELETE', async ({
+  test('TL-12-5 Unsuccessful authorization using not allowed method DELETE', async ({
     request,
   }) => {
     const response = await request.delete('https://backend.tallinn-learning.ee/login/student', {
@@ -88,9 +119,7 @@ test.describe('Login tests', async () => {
     expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
   })
 
-  test.skip('TL-12-6 Unsuccessful authorization with incorrect credentials', async ({
-    request,
-  }) => {
+  test('TL-12-6 Unsuccessful authorization with incorrect credentials', async ({ request }) => {
     const response = await request.post('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDTO.createLoginWithIncorrectData(),
     })
