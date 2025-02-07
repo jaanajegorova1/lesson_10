@@ -3,7 +3,7 @@ import { LoginDTO } from './DTO/LoginDTO'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
 
-test.describe('Login tests', async () => {
+test.describe('Login tests', async () => { //lesson12
   test('TL-12-1 Successful authorization', async ({ request }) => {
     const response = await request.post('https://backend.tallinn-learning.ee/login/student', {
       data: LoginDTO.createLoginWithCorrectData(),
