@@ -24,9 +24,8 @@ test.describe('Login tests', async () => {
     console.log(await responseLogin.text())
 
     const responseCreateOrder = await request.post('https://backend.tallinn-learning.ee/orders', {
-      data: OrderDto.generateRandomOrderDto(), // data; {};
+      data: OrderDto.generateRandomOrderDto(),
       headers: {
-        // Content-type: plain/text
         Authorization: 'Bearer ' + (await responseLogin.text()),
       },
     })
@@ -54,7 +53,6 @@ test.describe('Login tests', async () => {
     const responseOrderStatus = await request.get(
       `https://backend.tallinn-learning.ee/orders/${createdOrder.id}`,
       {
-        //const responseOrderStatus = await request.get("https://backend.tallinn-learning.ee/orders/" + createdOrder.id, {
         headers: {
           Authorization: 'Bearer ' + (await responseLogin.text()),
         },
@@ -64,38 +62,5 @@ test.describe('Login tests', async () => {
     const requestedOrder = OrderDto.serializeResponse(await responseOrderStatus.json())
     expect(requestedOrder.status).toBeDefined()
     expect(requestedOrder.status).toBe('OPEN')
-  })
-
-  test.skip('TL-12-4 Unsuccessful authorization using not allowed method PUT', async ({
-    request,
-  }) => {
-    const response = await request.put('https://backend.tallinn-learning.ee/login/student', {
-      data: LoginDTO.createLoginWithCorrectData(),
-    })
-
-    console.log(await response.text())
-    expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
-  })
-
-  test.skip('TL-12-5 Unsuccessful authorization using not allowed method DELETE', async ({
-    request,
-  }) => {
-    const response = await request.delete('https://backend.tallinn-learning.ee/login/student', {
-      data: LoginDTO.createLoginWithCorrectData(),
-    })
-
-    console.log(await response.text())
-    expect(response.status()).toBe(StatusCodes.METHOD_NOT_ALLOWED)
-  })
-
-  test.skip('TL-12-6 Unsuccessful authorization with incorrect credentials', async ({
-    request,
-  }) => {
-    const response = await request.post('https://backend.tallinn-learning.ee/login/student', {
-      data: LoginDTO.createLoginWithIncorrectData(),
-    })
-
-    console.log(await response.text())
-    expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
   })
 })
