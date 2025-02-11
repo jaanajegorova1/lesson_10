@@ -2,11 +2,10 @@ import { expect, test } from '@playwright/test'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
 import { ApiClient } from '../api/ApiClient'
-import { LoginDTO } from './DTO/LoginDTO'
 
-test.describe('Login tests with ApiClient', async () => {
-  test('TL-12-5 Successful authorization', async ({ request }) => {
+test.describe('Login tests with ApiClient', async () => {  test('TL-12-5 Successful authorization', async ({ request }) => {
     const apiClient = await ApiClient.getInstance(request)
+
     expect(apiClient.jwt).not.toBeUndefined()
   })
 
@@ -19,8 +18,8 @@ test.describe('Login tests with ApiClient', async () => {
       },
     })
     console.log(await responseCreateOrder.text())
+
     expect(responseCreateOrder.status()).toBe(StatusCodes.OK)
-    console.log()
   })
 
   test('TL-12-7 Successful authorization, order creation and order status', async ({ request }) => {
@@ -56,26 +55,16 @@ test.describe('Login tests with ApiClient', async () => {
     const apiClient = await ApiClient.getInstance(request)
     const orderId = await apiClient.createOrderAndReturnOrderId()
     await apiClient.deleteOrder(orderId)
-    const deleteOrder = await request.delete(
-      `https://backend.tallinn-learning.ee/orders/${await orderId}`,
+
+    const responseForDeletedOrderId = await request.get(
+      `https://backend.tallinn-learning.ee/orders/${orderId}`,
       {
         headers: {
           Authorization: 'Bearer ' + apiClient.jwt,
         },
       },
     )
-    console.log('Delete order Id: ', orderId)
-    expect(deleteOrder.status()).toBe(500) // BUG! by any reason code 500 (Internal Server Error) is displayed instead of 200, should be.toBe(StatusCodes.OK);
-
-    const responseDeletion = await deleteOrder.json()
-    expect(responseDeletion).toBe(true)
-
-    const check = await request.get(`https://backend.tallinn-learning.ee/orders/${orderId}`, {
-      headers: {
-        Authorization: 'Bearer ' + apiClient.jwt,
-      },
-    })
-    console.log('GET request for deleted order', check.status())
-    expect(check.status()).toBe(500) // Code 500 SERVICE_UNAVAILABLE is displayed instead of 200
+    expect(responseForDeletedOrderId.status).toBe(StatusCodes.OK)
+    expect(apiClient.deleteOrder(orderId)).toBe('')
   })
 })
