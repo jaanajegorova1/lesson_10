@@ -39,13 +39,9 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          USERNAME1: ${{ secrets.USERNAME1 }}
+          PASSWORD1: ${{ secrets.PASSWORD1 }}
         run: |
           echo "Running Playwright to execute API tests..."
           npx playwright test tests/Login_withoutApiClient.spec.ts
-      - name: Run Playwright API tests with ApiClient
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          echo "Running Playwright to execute API tests..."
           npx playwright test tests/Login_withApiClient.spec.ts

@@ -57,15 +57,10 @@ test.describe('Login tests with ApiClient', async () => {
     const orderId = await apiClient.createOrderAndReturnOrderId()
     await apiClient.deleteOrder(orderId)
 
-    const responseForDeletedOrderId = await request.get(
-      `https://backend.tallinn-learning.ee/orders/${orderId}`,
-      {
-        headers: {
-          Authorization: 'Bearer ' + apiClient.jwt,
-        },
-      },
-    )
-    expect(responseForDeletedOrderId.status).toBe(StatusCodes.OK)
-    expect(apiClient.deleteOrder(orderId)).toBe('')
+    const searchStatus = await apiClient.searchOrder(orderId)
+    expect(searchStatus.status()).toBe(StatusCodes.OK)
+
+    const headers = searchStatus.headers()
+    expect(headers['content-length']).toBeUndefined()
   })
 })

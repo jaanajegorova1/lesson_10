@@ -25,7 +25,7 @@ test.describe('Login tests without ApiClient', async () => {
     console.log(await responseLogin.text())
 
     const responseCreateOrder = await request.post('https://backend.tallinn-learning.ee/orders', {
-      data: OrderDto.generateRandomOrderDto(), // data; {};
+      data: OrderDto.generateRandomOrderDto(),
       headers: {
         // Content-type: plain/text
         Authorization: 'Bearer ' + (await responseLogin.text()),
@@ -44,7 +44,7 @@ test.describe('Login tests without ApiClient', async () => {
     expect(responseLogin.status()).toBe(StatusCodes.OK)
 
     const responseCreateOrder = await request.post('https://backend.tallinn-learning.ee/orders', {
-      data: OrderDto.generateRandomOrderDto(), // data; {};
+      data: OrderDto.generateRandomOrderDto(),
       headers: {
         Authorization: 'Bearer ' + (await responseLogin.text()),
       },
@@ -82,7 +82,7 @@ test.describe('Login tests without ApiClient', async () => {
     })
 
     const responseCreateOrder = await request.post('https://backend.tallinn-learning.ee/orders', {
-      data: OrderDto.generateRandomOrderDto(), // data; {};
+      data: OrderDto.generateRandomOrderDto(),
       headers: {
         Authorization: 'Bearer ' + (await responseLogin.text()),
       },

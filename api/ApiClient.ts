@@ -3,6 +3,7 @@ import { OrderDto } from '../tests/DTO/OrderDto'
 import { StatusCodes } from 'http-status-codes'
 import { APIRequestContext } from '@playwright/test'
 import { expect } from '@playwright/test'
+import { APIResponse } from '@playwright/test'
 
 const serverURL = 'https://backend.tallinn-learning.ee/'
 const loginPath = 'login/student'
@@ -46,7 +47,7 @@ export class ApiClient {
     const response = await this.request.post(`${serverURL}${orderPath}`, {
       data: OrderDto.generateRandomOrderDto(),
       headers: {
-        Authorization: 'Bearer ' + this.jwt,
+        Authorization: `Bearer ` + this.jwt,
       },
     })
 
@@ -57,14 +58,18 @@ export class ApiClient {
   }
 
   async deleteOrder(orderId: number): Promise<void> {
-    console.log('Delete order...')
-    const responseDeletion = await this.request.delete(`${serverURL}${orderPath}/${orderId}`, {
+    await this.request.delete(`${serverURL}${orderPath}/${orderId}`, {
       headers: {
-        Authorization: 'Bearer ${this.jwt}'
-      }
+        Authorization: `Bearer` + this.jwt,
+      },
     })
-    expect(responseDeletion.status()).toBe(true)
-    const responseBody = await responseDeletion.json()
-    expect(responseBody).toBe('')
+  }
+
+  async searchOrder(orderId: number): Promise<APIResponse> {
+    return await this.request.get(`${serverURL}${orderPath}/${orderId}`, {
+      headers: {
+        Authorization: 'Bearer ' + this.jwt,
+      },
+    })
   }
 }
