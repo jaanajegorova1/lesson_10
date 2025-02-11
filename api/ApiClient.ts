@@ -10,7 +10,7 @@ const orderPath = 'orders'
 export class ApiClient {
   static instance: ApiClient
   private request: APIRequestContext
-  jwt: string = ""
+  jwt: string = ''
 
   private constructor(request: APIRequestContext) {
     this.request = request
@@ -45,7 +45,7 @@ export class ApiClient {
     const response = await this.request.post(`${serverURL}${orderPath}`, {
       data: OrderDto.generateRandomOrderDto(),
       headers: {
-        Authorization: 'Bearer ' + (this.jwt),
+        Authorization: 'Bearer ' + this.jwt,
       },
     })
 
@@ -57,14 +57,11 @@ export class ApiClient {
 
   async deleteOrder(orderId: number): Promise<void> {
     console.log('Delete order...')
-    const responseDeletion = await this.request.delete(
-      `${serverURL}${orderPath}/${orderId}`,
-      {
-        headers: {
-          Authorization: 'Bearer ${this.jwt}',
-        },
+    const responseDeletion = await this.request.delete(`${serverURL}${orderPath}/${orderId}`, {
+      headers: {
+        Authorization: 'Bearer ${this.jwt}',
       },
-    )
+    })
     expect(responseDeletion.status()).toBe(true)
     const responseBody = await responseDeletion.json()
     expect(responseBody).toBe('')

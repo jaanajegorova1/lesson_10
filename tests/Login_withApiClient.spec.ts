@@ -3,7 +3,8 @@ import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
 import { ApiClient } from '../api/ApiClient'
 
-test.describe('Login tests with ApiClient', async () => {  test('TL-12-5 Successful authorization', async ({ request }) => {
+test.describe('Login tests with ApiClient', async () => {
+  test('TL-12-5 Successful authorization', async ({ request }) => {
     const apiClient = await ApiClient.getInstance(request)
 
     expect(apiClient.jwt).not.toBeUndefined()
