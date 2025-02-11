@@ -2,6 +2,7 @@ import { LoginDTO } from '../tests/DTO/LoginDTO'
 import { OrderDto } from '../tests/DTO/OrderDto'
 import { StatusCodes } from 'http-status-codes'
 import { APIRequestContext } from '@playwright/test'
+import { expect } from '@playwright/test'
 
 const serverURL = 'https://backend.tallinn-learning.ee/'
 const loginPath = 'login/student'
