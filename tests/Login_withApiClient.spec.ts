@@ -40,7 +40,7 @@ test.describe('Login tests with ApiClient', async () => {
       `https://backend.tallinn-learning.ee/orders/${createdOrder.id}`,
       {
         headers: {
-          Authorization: 'Bearer ' + apiClient.jwt
+          Authorization: 'Bearer ' + apiClient.jwt,
         },
       },
     )
