@@ -59,7 +59,7 @@ export class ApiClient {
     console.log('Delete order...')
     const responseDeletion = await this.request.delete(`${serverURL}${orderPath}/${orderId}`, {
       headers: {
-        Authorization: 'Bearer ${this.jwt}',
+        Authorization: 'Bearer ${this.jwt}'
       },
     })
     expect(responseDeletion.status()).toBe(true)
