@@ -2,10 +2,11 @@ name: User. Api local tests
 
 on:
   push:
-    branches: [master, develop]
+    branches: [main, master, develop]
   pull_request:
     branches:
       - master
+      - main
 
 jobs:
   format-lint-test:

@@ -1,12 +1,12 @@
 name: Build and Test
 
 on:
-#  push:
-#    branches:
-#      - main
-#  pull_request:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -30,5 +30,12 @@ jobs:
           compose-file: ./docker-compose.yaml
           up-flags: -d
 
-      - name: Run tests
-        run: npx playwright test
+      - name: Users API tests.
+        run: |
+          echo "Running Playwright to execute local API tests...."
+          npx playwright test tests/User.Api.spec.ts --workers=1
+
+      - name: Users Empty Array
+        run: |
+          echo "Running Playwright to execute local API tests..."
+          npx playwright test tests/Users.EmptyArray.Api.spec.ts --workers=1
