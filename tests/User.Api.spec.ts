@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { StatusCodes } from 'http-status-codes'
-import { UserDTO } from "./DTO/UserDTO"
+import { UserDTO } from './DTO/UserDTO'
 import { APIRequestContext } from 'playwright'
 
 test.describe('User management app tests.', async () => {

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import {UserDTO} from "./DTO/UserDTO";
+import { UserDTO } from './DTO/UserDTO'
 
 test('TL-14-5 get empty array for users test.', async ({ request }) => {
   const allUsersResponse = await request.get('http://localhost:3000/users')

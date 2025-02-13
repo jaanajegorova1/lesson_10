@@ -1,8 +1,8 @@
-name: Api local tests
+name: User. Api local tests
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [ master, develop]
   pull_request:
     branches:
       - master
@@ -44,12 +44,12 @@ jobs:
           compose-file: ./docker-compose.yaml
           up-flags: -d
 
-      - name: Run Playwright API tests. Get all users, create user, get user by id, delete user by id.
+      - name: Users API tests.
         run: |
           echo "Running Playwright to execute local API tests...."
           npx playwright test tests/User.Api.spec.ts --workers=1
 
-      - name: Run Playwright API tests. Get empty array for users.
+      - name: Users Empty Array
         run: |
           echo "Running Playwright to execute local API tests..."
           npx playwright test tests/Users.EmptyArray.Api.spec.ts --workers=1
