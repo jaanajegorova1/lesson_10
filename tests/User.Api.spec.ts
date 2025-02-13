@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { UserDTO } from "./DTO/UserDTO";
 import { APIRequestContext } from "playwright";
 
-test.describe("User management app tests", async () => {
+test.describe("User management app tests.", async () => {
   const clearUser = async (
     id: number,
     request: APIRequestContext,
