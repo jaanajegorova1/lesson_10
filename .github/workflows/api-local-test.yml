@@ -38,7 +38,7 @@ jobs:
       - name: Run TypeScript compile check
         run: |
           echo "Running TypeScript compiler to check for type issues..."
-          npx tsc --noEmit
+          npm tsc --noEmit
 
       - name: Set up Docker Compose
         uses: hoverkraft-tech/compose-action@v2.0.1
