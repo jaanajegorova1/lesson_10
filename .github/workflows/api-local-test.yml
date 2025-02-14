@@ -38,7 +38,6 @@ jobs:
       - name: Run TypeScript compile check
         run: |
           echo "Running TypeScript compiler to check for type issues..."
-          npm install -g typescript
           npx tsc --noEmit
 
       - name: Set up Docker Compose
