@@ -2,10 +2,9 @@ name: User. Api local tests
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [main. develop]
   pull_request:
     branches:
-      - master
       - main
 
 jobs:
