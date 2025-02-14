@@ -45,12 +45,12 @@ jobs:
           compose-file: ./docker-compose.yaml
           up-flags: -d
 
-      - name: Users API tests.
-        run: |
-          echo "Running Playwright to execute local API tests...."
-          npx playwright test tests/User.Api.spec.ts --workers=1
-
-      - name: Users Empty Array
+      - name: Users Api Empty Array
         run: |
           echo "Running Playwright to execute local API tests..."
           npx playwright test tests/Users.EmptyArray.Api.spec.ts --workers=1
+
+      - name: Users API tests
+        run: |
+          echo "Running Playwright to execute local API tests...."
+          npx playwright test tests/User.Api.spec.ts --workers=1
