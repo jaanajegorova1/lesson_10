@@ -1,4 +1,4 @@
-name: Login tests
+name: Login tests with and without ApiClient
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
-      - name: Run Playwright API tests
+      - name: Run Playwright API tests without ApiClient
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
@@ -43,4 +43,5 @@ jobs:
           PASSWORD1: ${{ secrets.PASSWORD1 }}
         run: |
           echo "Running Playwright to execute API tests..."
-          npx playwright test tests/Login.spec.ts
+          npx playwright test tests/Login_withoutApiClient.spec.ts
+          npx playwright test tests/Login_withApiClient.spec.ts
