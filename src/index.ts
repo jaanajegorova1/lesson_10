@@ -2,8 +2,7 @@ import express from 'express'
 import userController from './controllers/user-controller'
 
 const app = express()
-//const port = 3000
-const port = process.env.PORT || 4000
+const port = 3000
 
 app.use(express.json())
 
