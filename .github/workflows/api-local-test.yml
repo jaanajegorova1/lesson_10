@@ -35,6 +35,9 @@ jobs:
           echo "Running ESLint to check for linting issues..."
           npm run lint
 
+      - name: Install TypeScript globally
+        run: npm install -g typescript
+
       - name: Run TypeScript compile check
         run: |
           echo "Running TypeScript compiler to check for type issues..."
