@@ -1,8 +1,23 @@
 {
   "name": "api-node",
   "version": "1.0.0",
+  "description": "This project User Management API is a simple Node.js API built with Express and TypeScript. This API provides basic user management functionality using Express, supporting operations to create, retrieve, and delete users. User details are generated using Faker.js, and each user includes an ID, name, email, and phone number. It includes a Docker setup for easy development and deployment.",
+  "keywords": [],
+  "homepage": "https://github.com/jaanajegorova1/lesson_10#readme",
+  "bugs": {
+    "url": "https://github.com/jaanajegorova1/lesson_10/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaanajegorova1/lesson_10.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
   "main": "dist/index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "prettier:format": "prettier --write \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "prettier:check": "prettier --check \"tests/**/*.{ts,tsx,js,jsx,json,css,md}\"",
@@ -12,18 +27,11 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@faker-js/faker": "^9.1.0",
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.7.5",
     "eslint": "^9.12.0",
-    "express": "^4.21.1",
     "globals": "^15.11.0",
-    "http-status-codes": "^2.3.0",
     "playwright": "^1.50.1",
     "prettier": "^3.5.1",
     "prettier-plugin-organize-imports": "^4.1.0",
@@ -31,9 +39,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@faker-js/faker": "^9.5.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.8.1",
+    "express": "^4.21.2",
     "http-status-codes": "^2.3.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.7",
