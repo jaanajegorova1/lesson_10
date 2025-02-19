@@ -1,11 +1,11 @@
-name: User, Api local tests
+name: Login tests
 
 on:
   push:
     branches: [master, develop]
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   format-lint-test:
@@ -27,33 +27,20 @@ jobs:
         run: |
           echo "Running Prettier to check for formatting issues..."
           npm run prettier:check
-
       - name: Run ESLint check
         run: |
           echo "Running ESLint to check for linting issues..."
           npm run lint
-
       - name: Run TypeScript compile check
         run: |
           echo "Running TypeScript compiler to check for type issues..."
-          npm tsc --noEmit  
-
-      - name: Set up Docker Compose
-        uses: hoverkraft-tech/compose-action@v2.0.1
-        with:
-          compose-file: ./docker-compose.yaml
-          up-flags: -d
-
-      - name: Users Api Empty Array
+          npx tsc --noEmit
+      - name: Run Playwright API tests
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          USERNAME1: ${{ secrets.USERNAME1 }}
+          PASSWORD1: ${{ secrets.PASSWORD1 }}
         run: |
-          echo "Running Playwright to execute local API tests..."
-          npx playwright test tests/Users.EmptyArray.Api.spec.ts --workers=1
-
-      - name: Users API tests
-        run: |
-          echo "Running Playwright to execute local API tests..."
-          npx playwright thest tests/User.Api.spec.ts --workers=1
-      
-          
-
-  
+          echo "Running Playwright to execute API tests..."
+          npx playwright test tests/Login.spec.ts
