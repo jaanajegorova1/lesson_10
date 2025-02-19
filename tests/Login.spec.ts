@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test'
-import { LoginDto } from './DTO/LoginDto'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './DTO/OrderDto'
 import { ApiClient } from '../api/ApiClient'
