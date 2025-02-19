@@ -1,4 +1,4 @@
-export class UserDTO {
+export class UserDto {
   id: number
   name: string
   email: string
@@ -11,7 +11,7 @@ export class UserDTO {
     this.phone = phone
   }
 
-  static serializeResponse(json: any): UserDTO {
-    return new UserDTO(json?.id, json?.name, json?.email, json?.phone)
+  static serializeResponse(json: any): UserDto {
+    return new UserDto(json?.id, json?.name, json?.email, json?.phone)
   }
 }
