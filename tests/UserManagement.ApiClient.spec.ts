@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { UsersApiClient } from '../api/UsersApiClient'
 
-test.describe('User management app tests.', async () => {
+test.describe('User management app tests', async () => {
   test('TL-14-6 Create one user, find user data by id and check that user is created', async ({
     request,
   }) => {
