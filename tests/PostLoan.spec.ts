@@ -136,6 +136,5 @@ test('Empty loan dto should receive code 400', async ({ request }) => {
   const responseBody = await response
   console.log('response status:', response.status())
   console.log('response body:', responseBody)
-  //Soft check:
   expect.soft(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
