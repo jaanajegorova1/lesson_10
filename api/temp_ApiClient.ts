@@ -30,13 +30,11 @@ export class Temp_ApiClient {
     const authResponse = await this.request.post(`${serviceURL}${loginPath}`, {
       data: LoginDto.createLoginWithCorrectData(),
     })
-    // Check response status for negative cases
     if (authResponse.status() !== StatusCodes.OK) {
       console.log('Authorization failed')
       throw new Error(`Request failed with status ${authResponse.status()}`)
     }
 
-    // Save the JWT token as a client property
     this.jwt = await authResponse.text()
     console.log(`jwt received:\n${this.jwt}`)
   }

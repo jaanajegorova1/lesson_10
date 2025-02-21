@@ -18,8 +18,7 @@ export class ApiClient {
   }
 
   public static async getInstance(request: APIRequestContext): Promise<ApiClient> {
-    if (!ApiClient.instance === undefined) {
-      // bylo:  if (!ApiClient.instance) {
+    if (!ApiClient.instance) {
       ApiClient.instance = new ApiClient(request)
       await this.instance.requestJwt()
     }

@@ -49,7 +49,6 @@ export class LoanDto {
   }
 
   static generateEmptyLoanDto(): any {
-    //Object
     return {}
   }
 

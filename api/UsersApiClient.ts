@@ -43,7 +43,7 @@ export class UsersApiClient {
   public async deleteAllUsers(): Promise<void> {
     const users: [] = await this.getAllUsers()
     for (const user of users) {
-      await this.deleteUser(user.id)
+      await this.deleteUser(user['id'])
     }
   }
 }
